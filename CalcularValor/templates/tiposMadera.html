@@ -1,0 +1,36 @@
+{% extends "./base.html"%} {% block title %} Home {% endblock %} 
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            <div class="form-group">
+                <label for="txtNombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  name="txtNombre"
+                  id="txtNombre"
+                  class="form-control mb-3"
+                  maxlength="50"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="txtValor" class="form-label">Valor pie de Madera</label>
+                <input
+                  type="text"
+                  name="txtValor"
+                  id="txtValor"
+                  class="form-control mb-3"
+                  required
+                />
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary mt-3">Guardar</button>
+              </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4"></div>
+    </div>
+</div>
+
+{% endblock %}

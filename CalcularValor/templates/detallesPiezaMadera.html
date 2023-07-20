@@ -1,0 +1,44 @@
+{% extends "./base.html"%} {% block title %} Detalles de la pieza de Madera {% endblock %}
+{% block body %}
+
+
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+       .<div class="card text-start">
+         <div class="card-body">
+           
+           <h5>Detalles de la pieza de Madera</h5>
+           <div class="table-responsive">
+            
+            <table border="1" class="table table-striped">
+              <tr>
+                <td>Tipo de Madera:</td>
+                <td>{{ piezaMadera.tipoMadera.nombre}}</td>
+              </tr>
+              <tr>
+                <td>Alto:</td>
+                <td>{{ piezaMadera.alto}}</td>
+              </tr>
+              <tr>
+                <td>Ancho:</td>
+                <td>{{ piezaMadera.ancho}}</td>
+              </tr>
+              <tr>
+                <td>Largo:</td>
+                <td>{{ piezaMadera.largo}}</td>
+              </tr>
+              <tr>
+                <td>Valor de la pieza:</td>
+                <td>${{ piezaMadera.valorPieza}}</td>
+              </tr>
+            </table>
+
+           </div>
+         </div>
+       </div>
+    </div>
+        
+    </div>
+
+
+
+{% endblock %}

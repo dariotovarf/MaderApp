@@ -1,0 +1,63 @@
+{% extends "./base.html"%} {% block title %} Home {% endblock %} 
+{% block body %}
+
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+      <h3>Datos pieza de madera</h3>
+      <div class="card">
+        <div class="card-body">
+          <form action="/calcularValorPieza/" method="POST">{% csrf_token %}
+            <div class="form-group">
+              <label for="" class="form-label">Tipo de Madera</label>
+              <select name="tipoMadera" id="tipoMadera" class="form-control mb-3">
+                {% for item in listaTiposMadera %}
+                <option value="{{item.idTipoMadera}}">{{item.nombre}}</option>
+                {% endfor%}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="txtAlto" class="form-label">Alto (En pulgadas)</label>
+              <input
+                type="text"
+                name="txtAlto"
+                id="txtAlto"
+                class="form-control mb-3"
+                maxlength="100"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="txtAncho" class="form-label">Ancho (En pulgadas)</label>
+              <input
+                type="text"
+                name="txtAncho"
+                id="txtAncho"
+                class="form-control mb-3"
+                maxlength="100"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="txtLargo" class="form-label">Largo (En pulgadas)</label>
+              <input
+                type="text"
+                name="txtLargo"
+                id="txtLatgo"
+                class="form-control"
+                maxlength="100"
+                required
+              />
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary mt-3">Calcular</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+{% endblock %}
