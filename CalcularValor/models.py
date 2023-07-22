@@ -23,6 +23,7 @@ class PiezaMadera(models.Model):
     ancho = models.PositiveSmallIntegerField(null= False, blank=False, verbose_name="Ancho")
     largo = models.PositiveSmallIntegerField(null= False, blank=False, verbose_name="Largo")
     valorPieza = models.PositiveIntegerField(null= True, blank=True)
+    
 
     def totalValorPieza(self, valorPie):
         volumen = float(self.alto)*float(self.ancho)*float(self.largo)
