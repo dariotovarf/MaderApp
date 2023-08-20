@@ -1,11 +1,10 @@
-{% extends "./base.html"%} {% block title %} Tipos de Madera {% endblock %} {% block body %}
-
+{% extends "./base.html"%} {% block title %} Tipos de Madera {% endblock %} {% block body %} {% load humanize %}
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 border-black">
-      
       <h4 class="text-secondary">Crea un tipo de Madera</h4>
-      <form action="/registrarTipoMadera/" method="POST" >{% csrf_token %}
+      <form action="/registrarTipoMadera/" method="POST">
+        {% csrf_token %}
         <div class="form-group">
           <label for="txtNombre" class="form-label">Nombre</label>
           <input
@@ -54,25 +53,11 @@
                   <td>{{ tipo.idTipoMadera }}</td>
                   <td>{{ tipo.nombre }}</td>
 
-                  <td>${{ tipo.valorPie}}</td>
-                  <td>
-                    <a
-                      name="btn-editar"
-                      id="btn-editar"
-                      class="btn btn-info"
-                      href="#"
-                      role="button"
-                      >Editar</a
-                    >
-                    |
-                    <a
-                      name="btn-borrar"
-                      id="btn-borrar"
-                      class="btn btn-danger"
-                      href="#"
-                      role="button"
-                      >Borrar</a
-                    >
+                  <td>${{ tipo.valorPie | intcomma }}</td>
+                  <td class="text-center">
+                    <a name="btn-editar" id="btn-editar" href="/edicionTipoMadera/{{ tipo.idTipoMadera }}" role="button"
+                      ><i class="fa-regular fa-pen-to-square fa-2x"></i
+                    ></a>
                   </td>
                 </tr>
                 {% endfor %}

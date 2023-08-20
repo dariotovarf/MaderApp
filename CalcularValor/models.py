@@ -13,7 +13,7 @@ class TipoMadera(models.Model):
 
 class LotesMadera(models.Model):
     idLote = models.AutoField(primary_key=True)
-    fecha = models.DateField()
+    fecha = models.DateTimeField(auto_now_add=True)
 
 
 class PiezaMadera(models.Model):
@@ -22,16 +22,16 @@ class PiezaMadera(models.Model):
     alto = models.PositiveSmallIntegerField(null=False, blank=False, verbose_name="Alto")
     ancho = models.PositiveSmallIntegerField(null= False, blank=False, verbose_name="Ancho")
     largo = models.PositiveSmallIntegerField(null= False, blank=False, verbose_name="Largo")
-    valorPieza = models.PositiveIntegerField(null= True, blank=True)
-    
+    valorPieza = models.PositiveSmallIntegerField(null= True, blank=True)
+    idLote = models.ForeignKey(LotesMadera, null=True, blank=True, on_delete=models.CASCADE)
 
     def totalValorPieza(self, valorPie):
-        volumen = float(self.alto)*float(self.ancho)*float(self.largo)
+        volumen = int(self.alto)*int(self.ancho)*int(self.largo)
         pieCubico = 0.000579 # 1 pulgada cubica equivale a 0.000579 pies cubicos
-        return volumen*pieCubico*valorPie
+        return int(volumen*pieCubico*valorPie)
     
     def __str__(self):
-        txt = "Id: {0} - Alto: {1} - Ancho :{2} - Largo : {3}"
-        return txt.format(self.idPieza, self.alto, self.ancho, self.largo)
+        txt = "Id: {0} - Alto: {1} - Ancho :{2} - Largo : {3} - Valor Pieza : {4} - Id Lote :{5}"
+        return txt.format(self.idPieza, self.alto, self.ancho, self.largo, self.valorPieza, self.idLote)
         
 

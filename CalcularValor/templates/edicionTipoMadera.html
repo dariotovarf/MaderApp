@@ -1,0 +1,58 @@
+{% extends "./base.html" %} {% block title %} Edicion de Tipos de Madera {% endblock%} 
+{% block body%}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edicion de Tipos de Madera</h2>
+    <div class="card">
+      <div class="card-body">
+        <form action="/editarTipoMadera/" method="POST" >{% csrf_token %}
+          <div class="form-group">
+            <label for="txtIdTipoMadera" class="form-label">Id</label>
+            <input
+              type="text"
+              value="{{tipoMadera.idTipoMadera}}"
+              name="txtIdTipoMadera"
+              id="txtIdTipoMadera"
+              class="form-control"
+              maxlength="6"
+              minlength="6"
+              required
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="txtNombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              value="{{tipoMadera.nombre}}"
+              name="txtNombre"
+              id="txtNombre"
+              class="form-control"
+              maxlength="50"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="txtValorPie" class="form-label">Valor Pie</label>
+            <input
+              type="text"
+              value="{{tipoMadera.valorPie}}"
+              name="txtValorPie"
+              id="txtValorPie"
+              class="form-control"
+              min="1"
+              max="9"
+              value="1"
+              required
+            />
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary mt-3">Guardar</button>
+          </div>
+        </form>
+        <a href="/">Regresar</a>
+      </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

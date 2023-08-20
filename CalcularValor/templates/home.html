@@ -1,115 +1,116 @@
-{% extends "./base.html"%} {% block title %} Home {% endblock %} 
-{% block body %}
+{% extends "./base.html"%} {% block title %} MaderApp {% endblock %} {% block body %} {% load humanize %}
 
-
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <h3 class="text-secondary">Datos pieza de madera</h3>
-      <div class="card">
-        <div class="card-body">
-          <form action="/calcularValorPieza/" method="POST">{% csrf_token %}
-            <div class="form-group">
-              <label for="" class="form-label">Tipo de Madera</label>
-              <select name="tipoMadera" id="tipoMadera" class="form-control mb-3">
-                {% for item in listaTiposMadera %}
-                <option value="{{item.idTipoMadera}}">{{item.nombre}}</option>
-                {% endfor%}
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="txtAlto" class="form-label">Alto (En pulgadas)</label>
-              <input
-                type="text"
-                name="txtAlto"
-                id="txtAlto"
-                class="form-control mb-3"
-                maxlength="100"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="txtAncho" class="form-label">Ancho (En pulgadas)</label>
-              <input
-                type="text"
-                name="txtAncho"
-                id="txtAncho"
-                class="form-control mb-3"
-                maxlength="100"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="txtLargo" class="form-label">Largo (En pulgadas)</label>
-              <input
-                type="text"
-                name="txtLargo"
-                id="txtLatgo"
-                class="form-control"
-                maxlength="100"
-                required
-              />
-            </div>
-            <div class="d-grid gap-2">
-              <button class="btn btn-primary mt-3">Calcular</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-      <h4 class="card-title text-center text-secondary mb-3">
-        Lista de Piezas de Madera
-      </h4>
-      <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped table align-middle">
-              <thead>
-                <tr>
-                  <th scope="col">Tipo Madera</th>
-                  <th scope="col">Alto</th>
-                  <th scope="col">Ancho</th>
-                  <th scope="col">Largo</th>
-                  <th scope="col">Valor Pieza</th>
-                  <th class="text-center" scope="col">Acciones</th>
-                </tr>
-              </thead>
-              <tbody class="text-secondary">
-                {% for pieza in listaPiezas %}
-                <tr>
-                  <td>{{ pieza.tipoMadera.nombre }}</td>
-                  <td>{{ pieza.alto }}</td>
-                  <td>{{ pieza.ancho}}</td>
-                  <td>{{ pieza.largo}}</td>
-                  <td>${{ pieza.valorPieza}}</td>
-                  <td>
-                    <a
-                      name="btn-editar"
-                      id="btn-editar"
-                      class="btn btn-info"
-                      href="#"
-                      role="button"
-                      >Editar</a
-                    >
-                    |
-                    <a
-                      name="btn-borrar"
-                      id="btn-borrar"
-                      class="btn btn-danger"
-                      href="#"
-                      role="button"
-                      >Borrar</a
-                    >
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+    <h3 class="text-secondary">Datos pieza de madera</h3>
+    <div class="card">
+      <div class="card-body">
+        <form action="/calcularValorPieza/" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="" class="form-label">Tipo de Madera</label>
+            <select name="tipoMadera" id="tipoMadera" class="form-control mb-3">
+              {% for item in listaTiposMadera %}
+              <option value="{{item.idTipoMadera}}">{{item.nombre}}</option>
+              {% endfor%}
+            </select>
           </div>
-        </div>
+          <div class="form-group">
+            <label for="txtAlto" class="form-label">Alto (En pulgadas)</label>
+            <input
+              type="text"
+              name="txtAlto"
+              id="txtAlto"
+              class="form-control mb-3"
+              autocomplete="false"
+              maxlength="100"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="txtAncho" class="form-label">Ancho (En pulgadas)</label>
+            <input
+              type="text"
+              name="txtAncho"
+              id="txtAncho"
+              class="form-control mb-3"
+              autocomplete="false"
+              maxlength="100"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="txtLargo" class="form-label">Largo (En pulgadas)</label>
+            <input
+              type="text"
+              name="txtLargo"
+              id="txtLatgo"
+              class="form-control"
+              autocomplete="false"
+              maxlength="100"
+              required
+            />
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary mt-3">Calcular</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+  <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+    <h4 class="card-title text-center text-secondary mb-3">
+      Lista de Piezas de Madera
+    </h4>
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table align-middle">
+            <thead>
+              <tr class="text-center" >
+                <th scope="col">Tipo Madera</th>
+                <th scope="col">Alto</th>
+                <th scope="col">Ancho</th>
+                <th scope="col">Largo</th>
+                <th scope="col">Valor Pieza</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="text-secondary">
+              {% for pieza in listaPiezas %}
+              <tr>
+                <td>{{ pieza.tipoMadera.nombre }}</td>
+                <td class="text-center" >{{ pieza.alto }}</td>
+                <td class="text-center" >{{ pieza.ancho}}</td>
+                <td class="text-center" >{{ pieza.largo}}</td>
+                <td>${{ pieza.valorPieza | intcomma}}</td>
+                <td class="text-center">
+                  <a class="btnEliminar" href="/eliminarPiezaMadera/{{ pieza.idPieza }}">
+                    <i class="fa-regular fa-trash-can fa-2x"></i
+                  ></a>
+                </td>
+              </tr>
+              {% endfor %}
 
+              <tr>
+                <td colspan="4" class="fw-bold">Valor total del Lote</td>
+                <td>{{ total }}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    {% if listaPiezas %}
+    <a name="btn-grabar-lote" id="btn-grabar-lote" class="btn btn-primary m-3" href="{% url 'registrarLote' %}" role="button"
+    >Grabar lote</a>
+    
+    {% else %}
+      <a name="btn-grabar-lote" id="btn-grabar-lote" class="btn btn-primary disabled m-3" href="{% url 'registrarLote' %}" role="button"
+    >Grabar lote</a>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}
