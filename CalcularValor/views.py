@@ -8,6 +8,8 @@ def home(request):
     listaPiezas= PiezaMadera.objects.filter(idLote = None)
     listaTiposMadera = TipoMadera.objects.all()
     total = 0
+    for item in listaPiezas:
+        total = total + item.valorPieza
     return render(request, 'home.html', {"listaPiezas" : listaPiezas, "listaTiposMadera" : listaTiposMadera, "total": total })
 
 def calcularValorPieza(request):
@@ -23,6 +25,9 @@ def calcularValorPieza(request):
     listaPiezas= PiezaMadera.objects.filter(idLote = None)
     listaTiposMadera = TipoMadera.objects.all()
     total = 0
+    for item in listaPiezas:
+        total = total + item.valorPieza
+    
     return render(request, 'home.html', {"listaPiezas" : listaPiezas, "listaTiposMadera" : listaTiposMadera, "total": total })
 
 def eliminarPiezaMadera(request, idPieza):
@@ -31,6 +36,8 @@ def eliminarPiezaMadera(request, idPieza):
     listaPiezas= PiezaMadera.objects.filter(idLote = None)
     listaTiposMadera = TipoMadera.objects.all()
     total = 0
+    for item in listaPiezas:
+        total = total + item.valorPieza
     return render(request, 'home.html', {"listaPiezas" : listaPiezas, "listaTiposMadera" : listaTiposMadera, "total": total })
 
 
@@ -76,14 +83,19 @@ def registrarLote(request):
     listaPiezas= PiezaMadera.objects.filter(idLote = None)
     listaTiposMadera = TipoMadera.objects.all()
     total = 0
+    for item in listaPiezas:
+        total = total + item.valorPieza
     return render(request, 'home.html', {"listaPiezas" : listaPiezas, "listaTiposMadera" : listaTiposMadera, "total": total })
 
 def listarLotesMaderaDetalles(request, idLote):
     print('paso 1')
+    total = 0
     lote = LotesMadera.objects.get(idLote=idLote)
     listaPiezas = PiezaMadera.objects.filter(idLote = lote)
     listaLotesMadera = LotesMadera.objects.all()
-    return render(request, 'historialLotes.html', {'listaLotesMadera': listaLotesMadera, 'listaPiezas': listaPiezas})
+    for item in listaPiezas:
+        total = total + item.valorPieza
+    return render(request, 'historialLotes.html', {'listaLotesMadera': listaLotesMadera, 'listaPiezas': listaPiezas, 'total': total})
 
 def listarLotesMadera(request):
     listaLotesMadera = LotesMadera.objects.all()

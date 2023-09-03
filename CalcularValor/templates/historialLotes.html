@@ -1,4 +1,5 @@
 {% extends "./base.html"%} {% block title %} MaderApp {% endblock %} {% block body %} {% load humanize %}
+
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
     <h4 class="card-title text-center text-secondary mb-3">
@@ -70,7 +71,7 @@
 
               <tr>
                 <td colspan="4" class="fw-bold">Valor total del lote</td>
-                <td>{{ total }}</td>
+                <td>${{ total | intcomma}}</td>
                 <td></td>
               </tr>
             </tbody>
